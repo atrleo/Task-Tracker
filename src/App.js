@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import Header from './components/Header';
 import Task from './components/Task';
+import AddTask from './components/AddTask';
 
 function App() {
   const [tasks,setTask] = useState(
@@ -9,23 +10,32 @@ function App() {
         {
             id:1,
             text:'Ducati',
-            day:'sunday',
+            day:'Jan 20th at 10:10am ',
             reminder: false,
         },
         {
             id:2,
             text:'Honda',
-            day:'Monday',
+            day:'Dec 20th at 11:15am',
             reminder: false,
         },
         {
             id:3,
             text:'Kawasaki',
-            day:'Tuesday',
+            day:'Dec 21th at 3:10am',
             reminder: false,
         }
     ]
 )
+
+// Add Task
+  const addTask = (task)=>{
+  const id = Math.floor(Math.random()*1000)+1
+  const newTask = {id,...task};
+  setTask([...tasks,newTask]);
+
+
+  }
 
 // Delte Task
 const deleteTask = (id)=>{
@@ -40,10 +50,11 @@ const toggleReminder = (id)=>{
   return (
  
     <>
-     <div className='d-flex border border-2 border-primary  flex-column justify-content-center align-items-center bg-light vh-100'>
+     <div className='d-flex border border-2 border-primary  flex-column justify-content-center align-items-center bg-light p-5 vh-50'>
   
      <div className='w-50 rounded bg-white border shadow p-4'>
      <Header />
+     <AddTask onAdd={addTask} />
      {tasks.length > 0 ?<Task tasks={tasks} onDelete= {deleteTask} onToggle={toggleReminder} />: 'No Task To Show'}
 
 
