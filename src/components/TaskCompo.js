@@ -7,7 +7,7 @@ function TaskCompo({ tasks,onDelete,onToggle}) {
         <div className="card-body" style={{ border: `1px solid ${tasks.reminder? 'green': "white" }` }}  onDoubleClick={()=>onToggle(tasks.id)}>
           <h4>{tasks.text}</h4>
           <p>{tasks.day}</p>
-          {/* <button onClick={()=>onToggle(tasks.id)}>C</button> */}
+   
          
         </div>
         <div style={{ padding: '10px' }}>

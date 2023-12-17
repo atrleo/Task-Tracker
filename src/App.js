@@ -5,6 +5,7 @@ import Task from './components/Task';
 import AddTask from './components/AddTask';
 
 function App() {
+  const[showAddTask,setShowAddTask] = useState(false)
   const [tasks,setTask] = useState(
     [
         {
@@ -50,11 +51,11 @@ const toggleReminder = (id)=>{
   return (
  
     <>
-     <div className='d-flex border border-2 border-primary  flex-column justify-content-center align-items-center bg-light p-5 vh-50'>
+     <div className='d-flex flex-column justify-content-center align-items-center bg-light p-5 vh-100  '>
   
-     <div className='w-50 rounded bg-white border shadow p-4'>
-     <Header />
-     <AddTask onAdd={addTask} />
+     <div className='w-50 rounded bg-white border shadow p-4 mt-4' style={{ overflow: 'auto' }} >
+     <Header onShow={()=>setShowAddTask(!showAddTask)}  showAddTask={showAddTask}/>
+     {showAddTask && <AddTask onAdd={addTask} />}
      {tasks.length > 0 ?<Task tasks={tasks} onDelete= {deleteTask} onToggle={toggleReminder} />: 'No Task To Show'}
 
 
